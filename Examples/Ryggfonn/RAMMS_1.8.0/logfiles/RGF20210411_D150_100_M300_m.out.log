@@ -1,0 +1,1007 @@
+----------------------------------------------------------------------------
+ Welcome to the RAMMS::AVALANCHE x64 calculation module! 
+----------------------------------------------------------------------------
+
+ Reading input file... 
+
+ Reading the mesh ... 
+
+ Initializing the mesh with 96249 nodes and 95449 elements
+
+ Reading xy data... Initializing debris flow
+
+ INITIAL FLOW VOLUME: 24871.9 m3 
+
+ Writing output file: T:\Ryggfonn\SIMULATION\DIV_SIM\RGF_REXT\RGF20210411\RGF20210411_D150_100_M300_m.out... 
+
+ Writing coordinates...
+ Writing connectivity list...
+ Writing initial conditions... 
+
+ Starting explicit time integration...
+*.*.*.*.*......
+
+ Time 2.1 
+ Step 11 dt 0.140465 Cfl 0.472737 
+ Hmax 2.32 m Vmax 15.39 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 6814.2 / 6814.2 ) 
+
+ FLOW VOLUME: 24871.86 m3 
+
+ NUMERICAL VOLUME LOSS: 0.01 m3 
+
+ VOLUME CHECK: 1.0 
+...................
+
+ Time 4.1 
+ Step 30 dt 0.0876096 Cfl 0.455239 
+ Hmax 3.19 m Vmax 23.43 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 11928.5 / 11928.5 ) 
+
+ FLOW VOLUME: 24871.85 m3 
+
+ NUMERICAL VOLUME LOSS: 0.02 m3 
+
+ VOLUME CHECK: 1.0 
+........................
+
+ Time 6.0 
+ Step 54 dt 0.0756941 Cfl 0.454773 
+ Hmax 2.40 m Vmax 27.57 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 15320.6 / 15320.6 ) 
+
+ FLOW VOLUME: 24871.84 m3 
+
+ NUMERICAL VOLUME LOSS: 0.03 m3 
+
+ VOLUME CHECK: 1.0 
+..............................
+
+ Time 8.0 
+ Step 84 dt 0.0623601 Cfl 0.450078 
+ Hmax 2.92 m Vmax 33.80 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 18339.7 / 18339.7 ) 
+
+ FLOW VOLUME: 24871.82 m3 
+
+ NUMERICAL VOLUME LOSS: 0.05 m3 
+
+ VOLUME CHECK: 1.0 
+..............................
+
+ Time 10.0 
+ Step 114 dt 0.0681488 Cfl 0.450484 
+ Hmax 4.30 m Vmax 30.49 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 20425.4 / 20425.4 ) 
+
+ FLOW VOLUME: 24871.80 m3 
+
+ NUMERICAL VOLUME LOSS: 0.06 m3 
+
+ VOLUME CHECK: 1.0 
+...............................
+
+ Time 12.1 
+ Step 145 dt 0.0648147 Cfl 0.448958 
+ Hmax 4.12 m Vmax 31.76 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 21622.3 / 21622.3 ) 
+
+ FLOW VOLUME: 24871.77 m3 
+
+ NUMERICAL VOLUME LOSS: 0.09 m3 
+
+ VOLUME CHECK: 1.0 
+...............................
+
+ Time 14.0 
+ Step 176 dt 0.061821 Cfl 0.448971 
+ Hmax 4.04 m Vmax 34.39 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 22439.7 / 22439.7 ) 
+
+ FLOW VOLUME: 24871.75 m3 
+
+ NUMERICAL VOLUME LOSS: 0.11 m3 
+
+ VOLUME CHECK: 1.0 
+.................................
+
+ Time 16.0 
+ Step 209 dt 0.0612667 Cfl 0.450063 
+ Hmax 3.19 m Vmax 37.08 m/s 
+
+ MOVING MOMENTUM: 100.0 percent ( 22909.9 / 22909.9 ) 
+
+ FLOW VOLUME: 24871.72 m3 
+
+ NUMERICAL VOLUME LOSS: 0.13 m3 
+
+ VOLUME CHECK: 1.0 
+................................
+
+ Time 18.0 
+ Step 241 dt 0.0628285 Cfl 0.45005 
+ Hmax 2.96 m Vmax 36.38 m/s 
+
+ MOVING MOMENTUM: 98.5 percent ( 22579.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.69 m3 
+
+ NUMERICAL VOLUME LOSS: 0.16 m3 
+
+ VOLUME CHECK: 1.0 
+...............................
+
+ Time 20.0 
+ Step 272 dt 0.067009 Cfl 0.449405 
+ Hmax 2.84 m Vmax 34.29 m/s 
+
+ MOVING MOMENTUM: 94.4 percent ( 21643.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.67 m3 
+
+ NUMERICAL VOLUME LOSS: 0.19 m3 
+
+ VOLUME CHECK: 1.0 
+.............................
+
+ Time 22.0 
+ Step 301 dt 0.0704385 Cfl 0.449342 
+ Hmax 2.46 m Vmax 32.38 m/s 
+
+ MOVING MOMENTUM: 89.0 percent ( 20401.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.64 m3 
+
+ NUMERICAL VOLUME LOSS: 0.21 m3 
+
+ VOLUME CHECK: 1.0 
+............................
+
+ Time 24.0 
+ Step 329 dt 0.0703292 Cfl 0.45415 
+ Hmax 2.38 m Vmax 32.47 m/s 
+
+ MOVING MOMENTUM: 83.8 percent ( 19210.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.61 m3 
+
+ NUMERICAL VOLUME LOSS: 0.24 m3 
+
+ VOLUME CHECK: 1.0 
+.............................
+
+ Time 26.0 
+ Step 358 dt 0.0668111 Cfl 0.450422 
+ Hmax 2.32 m Vmax 33.00 m/s 
+
+ MOVING MOMENTUM: 79.2 percent ( 18156.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.58 m3 
+
+ NUMERICAL VOLUME LOSS: 0.27 m3 
+
+ VOLUME CHECK: 1.0 
+...............................
+
+ Time 28.0 
+ Step 389 dt 0.0604331 Cfl 0.453 
+ Hmax 1.99 m Vmax 34.76 m/s 
+
+ MOVING MOMENTUM: 76.5 percent ( 17530.7 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.55 m3 
+
+ NUMERICAL VOLUME LOSS: 0.30 m3 
+
+ VOLUME CHECK: 1.0 
+..................................
+
+ Time 30.0 
+ Step 423 dt 0.0590248 Cfl 0.449668 
+ Hmax 2.05 m Vmax 37.16 m/s 
+
+ MOVING MOMENTUM: 74.6 percent ( 17095.4 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.51 m3 
+
+ NUMERICAL VOLUME LOSS: 0.34 m3 
+
+ VOLUME CHECK: 1.0 
+.................................
+
+ Time 32.0 
+ Step 456 dt 0.0624956 Cfl 0.450703 
+ Hmax 1.80 m Vmax 35.86 m/s 
+
+ MOVING MOMENTUM: 74.8 percent ( 17151.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.47 m3 
+
+ NUMERICAL VOLUME LOSS: 0.38 m3 
+
+ VOLUME CHECK: 1.0 
+...............................
+
+ Time 34.0 
+ Step 487 dt 0.0663501 Cfl 0.448841 
+ Hmax 1.95 m Vmax 32.93 m/s 
+
+ MOVING MOMENTUM: 73.7 percent ( 16897.7 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.43 m3 
+
+ NUMERICAL VOLUME LOSS: 0.41 m3 
+
+ VOLUME CHECK: 1.0 
+..............................
+
+ Time 36.0 
+ Step 517 dt 0.0655645 Cfl 0.450437 
+ Hmax 1.64 m Vmax 32.21 m/s 
+
+ MOVING MOMENTUM: 71.1 percent ( 16283.3 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.39 m3 
+
+ NUMERICAL VOLUME LOSS: 0.45 m3 
+
+ VOLUME CHECK: 1.0 
+..............................
+
+ Time 38.0 
+ Step 547 dt 0.0683381 Cfl 0.449183 
+ Hmax 1.79 m Vmax 31.28 m/s 
+
+ MOVING MOMENTUM: 68.5 percent ( 15689.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.35 m3 
+
+ NUMERICAL VOLUME LOSS: 0.49 m3 
+
+ VOLUME CHECK: 1.0 
+.............................
+
+ Time 40.0 
+ Step 576 dt 0.0715645 Cfl 0.449311 
+ Hmax 2.12 m Vmax 29.82 m/s 
+
+ MOVING MOMENTUM: 66.4 percent ( 15221.7 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.31 m3 
+
+ NUMERICAL VOLUME LOSS: 0.53 m3 
+
+ VOLUME CHECK: 1.0 
+............................
+
+ Time 42.0 
+ Step 604 dt 0.0684495 Cfl 0.448842 
+ Hmax 2.68 m Vmax 29.34 m/s 
+
+ MOVING MOMENTUM: 65.5 percent ( 15002.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.28 m3 
+
+ NUMERICAL VOLUME LOSS: 0.56 m3 
+
+ VOLUME CHECK: 1.0 
+.............................
+
+ Time 44.0 
+ Step 633 dt 0.067861 Cfl 0.449728 
+ Hmax 2.04 m Vmax 30.83 m/s 
+
+ MOVING MOMENTUM: 64.0 percent ( 14663.4 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.23 m3 
+
+ NUMERICAL VOLUME LOSS: 0.60 m3 
+
+ VOLUME CHECK: 1.0 
+.............................
+
+ Time 46.0 
+ Step 662 dt 0.0714574 Cfl 0.451829 
+ Hmax 1.99 m Vmax 29.55 m/s 
+
+ MOVING MOMENTUM: 62.6 percent ( 14334.4 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.20 m3 
+
+ NUMERICAL VOLUME LOSS: 0.64 m3 
+
+ VOLUME CHECK: 1.0 
+...........................
+
+ Time 48.0 
+ Step 689 dt 0.0737699 Cfl 0.449492 
+ Hmax 2.82 m Vmax 28.97 m/s 
+
+ MOVING MOMENTUM: 61.5 percent ( 14097.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.16 m3 
+
+ NUMERICAL VOLUME LOSS: 0.68 m3 
+
+ VOLUME CHECK: 1.0 
+...........................
+
+ Time 50.0 
+ Step 716 dt 0.0760344 Cfl 0.449544 
+ Hmax 3.10 m Vmax 27.40 m/s 
+
+ MOVING MOMENTUM: 61.1 percent ( 13999.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.12 m3 
+
+ NUMERICAL VOLUME LOSS: 0.71 m3 
+
+ VOLUME CHECK: 1.0 
+..........................
+
+ Time 52.0 
+ Step 742 dt 0.076626 Cfl 0.449844 
+ Hmax 3.05 m Vmax 26.77 m/s 
+
+ MOVING MOMENTUM: 61.0 percent ( 13972.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.08 m3 
+
+ NUMERICAL VOLUME LOSS: 0.75 m3 
+
+ VOLUME CHECK: 1.0 
+..........................
+
+ Time 54.0 
+ Step 768 dt 0.0784103 Cfl 0.449558 
+ Hmax 2.86 m Vmax 27.09 m/s 
+
+ MOVING MOMENTUM: 60.3 percent ( 13820.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.04 m3 
+
+ NUMERICAL VOLUME LOSS: 0.79 m3 
+
+ VOLUME CHECK: 1.0 
+.........................
+
+ Time 56.0 
+ Step 793 dt 0.0803834 Cfl 0.449753 
+ Hmax 2.73 m Vmax 26.00 m/s 
+
+ MOVING MOMENTUM: 59.9 percent ( 13735.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24871.01 m3 
+
+ NUMERICAL VOLUME LOSS: 0.83 m3 
+
+ VOLUME CHECK: 1.0 
+.........................
+
+ Time 58.0 
+ Step 818 dt 0.0805677 Cfl 0.449879 
+ Hmax 2.97 m Vmax 25.68 m/s 
+
+ MOVING MOMENTUM: 59.4 percent ( 13607.9 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.97 m3 
+
+ NUMERICAL VOLUME LOSS: 0.87 m3 
+
+ VOLUME CHECK: 1.0 
+.........................
+
+ Time 60.0 
+ Step 843 dt 0.0797287 Cfl 0.449718 
+ Hmax 2.67 m Vmax 25.48 m/s 
+
+ MOVING MOMENTUM: 58.6 percent ( 13434.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.93 m3 
+
+ NUMERICAL VOLUME LOSS: 0.91 m3 
+
+ VOLUME CHECK: 1.0 
+........................
+
+ Time 62.0 
+ Step 867 dt 0.0844634 Cfl 0.449526 
+ Hmax 2.71 m Vmax 24.30 m/s 
+
+ MOVING MOMENTUM: 58.2 percent ( 13331.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.88 m3 
+
+ NUMERICAL VOLUME LOSS: 0.95 m3 
+
+ VOLUME CHECK: 1.0 
+........................
+
+ Time 64.1 
+ Step 891 dt 0.0866069 Cfl 0.449504 
+ Hmax 2.46 m Vmax 24.44 m/s 
+
+ MOVING MOMENTUM: 57.7 percent ( 13220.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.84 m3 
+
+ NUMERICAL VOLUME LOSS: 0.99 m3 
+
+ VOLUME CHECK: 1.0 
+.......................
+
+ Time 66.1 
+ Step 914 dt 0.0881273 Cfl 0.450554 
+ Hmax 2.34 m Vmax 24.45 m/s 
+
+ MOVING MOMENTUM: 56.7 percent ( 12989.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.80 m3 
+
+ NUMERICAL VOLUME LOSS: 1.03 m3 
+
+ VOLUME CHECK: 1.0 
+.......................
+
+ Time 68.1 
+ Step 937 dt 0.0850013 Cfl 0.450648 
+ Hmax 2.44 m Vmax 23.86 m/s 
+
+ MOVING MOMENTUM: 55.4 percent ( 12686.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.76 m3 
+
+ NUMERICAL VOLUME LOSS: 1.07 m3 
+
+ VOLUME CHECK: 1.0 
+.......................
+
+ Time 70.1 
+ Step 960 dt 0.0892831 Cfl 0.44786 
+ Hmax 2.56 m Vmax 22.64 m/s 
+
+ MOVING MOMENTUM: 53.2 percent ( 12186.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.72 m3 
+
+ NUMERICAL VOLUME LOSS: 1.11 m3 
+
+ VOLUME CHECK: 1.0 
+......................
+
+ Time 72.1 
+ Step 982 dt 0.093149 Cfl 0.449284 
+ Hmax 4.36 m Vmax 21.89 m/s 
+
+ MOVING MOMENTUM: 48.9 percent ( 11199.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.68 m3 
+
+ NUMERICAL VOLUME LOSS: 1.15 m3 
+
+ VOLUME CHECK: 1.0 
+.....................
+
+ Time 74.1 
+ Step 1003 dt 0.0969635 Cfl 0.449235 
+ Hmax 5.94 m Vmax 21.04 m/s 
+
+ MOVING MOMENTUM: 44.8 percent ( 10257.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.64 m3 
+
+ NUMERICAL VOLUME LOSS: 1.18 m3 
+
+ VOLUME CHECK: 1.0 
+....................
+
+ Time 76.0 
+ Step 1023 dt 0.0992081 Cfl 0.45024 
+ Hmax 7.49 m Vmax 20.56 m/s 
+
+ MOVING MOMENTUM: 40.3 percent ( 9228.9 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.61 m3 
+
+ NUMERICAL VOLUME LOSS: 1.22 m3 
+
+ VOLUME CHECK: 1.0 
+....................
+
+ Time 78.0 
+ Step 1043 dt 0.0973055 Cfl 0.450177 
+ Hmax 7.44 m Vmax 20.49 m/s 
+
+ MOVING MOMENTUM: 35.0 percent ( 8009.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.57 m3 
+
+ NUMERICAL VOLUME LOSS: 1.25 m3 
+
+ VOLUME CHECK: 1.0 
+.....................
+
+ Time 80.1 
+ Step 1064 dt 0.097623 Cfl 0.449334 
+ Hmax 6.37 m Vmax 20.85 m/s 
+
+ MOVING MOMENTUM: 31.5 percent ( 7227.3 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.53 m3 
+
+ NUMERICAL VOLUME LOSS: 1.29 m3 
+
+ VOLUME CHECK: 1.0 
+....................
+
+ Time 82.0 
+ Step 1084 dt 0.101821 Cfl 0.449031 
+ Hmax 5.89 m Vmax 19.82 m/s 
+
+ MOVING MOMENTUM: 29.5 percent ( 6760.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.50 m3 
+
+ NUMERICAL VOLUME LOSS: 1.33 m3 
+
+ VOLUME CHECK: 1.0 
+...................
+
+ Time 84.0 
+ Step 1103 dt 0.104643 Cfl 0.449741 
+ Hmax 5.70 m Vmax 19.33 m/s 
+
+ MOVING MOMENTUM: 27.7 percent ( 6358.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.46 m3 
+
+ NUMERICAL VOLUME LOSS: 1.36 m3 
+
+ VOLUME CHECK: 1.0 
+...................
+
+ Time 86.0 
+ Step 1122 dt 0.10536 Cfl 0.449892 
+ Hmax 5.56 m Vmax 19.22 m/s 
+
+ MOVING MOMENTUM: 25.9 percent ( 5925.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.43 m3 
+
+ NUMERICAL VOLUME LOSS: 1.39 m3 
+
+ VOLUME CHECK: 1.0 
+...................
+
+ Time 88.0 
+ Step 1141 dt 0.106254 Cfl 0.449641 
+ Hmax 5.50 m Vmax 19.10 m/s 
+
+ MOVING MOMENTUM: 23.9 percent ( 5486.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.40 m3 
+
+ NUMERICAL VOLUME LOSS: 1.43 m3 
+
+ VOLUME CHECK: 1.0 
+...................
+
+ Time 90.1 
+ Step 1160 dt 0.108285 Cfl 0.449509 
+ Hmax 5.66 m Vmax 18.79 m/s 
+
+ MOVING MOMENTUM: 22.0 percent ( 5041.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.37 m3 
+
+ NUMERICAL VOLUME LOSS: 1.46 m3 
+
+ VOLUME CHECK: 1.0 
+..................
+
+ Time 92.0 
+ Step 1178 dt 0.11023 Cfl 0.44963 
+ Hmax 5.79 m Vmax 18.49 m/s 
+
+ MOVING MOMENTUM: 20.1 percent ( 4613.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.33 m3 
+
+ NUMERICAL VOLUME LOSS: 1.49 m3 
+
+ VOLUME CHECK: 1.0 
+..................
+
+ Time 94.0 
+ Step 1196 dt 0.111822 Cfl 0.449616 
+ Hmax 5.62 m Vmax 18.25 m/s 
+
+ MOVING MOMENTUM: 18.6 percent ( 4272.4 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.30 m3 
+
+ NUMERICAL VOLUME LOSS: 1.52 m3 
+
+ VOLUME CHECK: 1.0 
+..................
+
+ Time 96.1 
+ Step 1214 dt 0.113599 Cfl 0.449607 
+ Hmax 5.54 m Vmax 17.99 m/s 
+
+ MOVING MOMENTUM: 17.6 percent ( 4022.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.27 m3 
+
+ NUMERICAL VOLUME LOSS: 1.55 m3 
+
+ VOLUME CHECK: 1.0 
+.................
+
+ Time 98.0 
+ Step 1231 dt 0.115232 Cfl 0.449647 
+ Hmax 5.53 m Vmax 17.76 m/s 
+
+ MOVING MOMENTUM: 16.5 percent ( 3790.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.24 m3 
+
+ NUMERICAL VOLUME LOSS: 1.58 m3 
+
+ VOLUME CHECK: 1.0 
+..................
+
+ Time 100.1 
+ Step 1249 dt 0.116955 Cfl 0.449618 
+ Hmax 5.52 m Vmax 17.51 m/s 
+
+ MOVING MOMENTUM: 15.5 percent ( 3558.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.20 m3 
+
+ NUMERICAL VOLUME LOSS: 1.62 m3 
+
+ VOLUME CHECK: 1.0 
+.................
+
+ Time 102.1 
+ Step 1266 dt 0.118705 Cfl 0.449596 
+ Hmax 5.53 m Vmax 17.27 m/s 
+
+ MOVING MOMENTUM: 14.6 percent ( 3354.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.17 m3 
+
+ NUMERICAL VOLUME LOSS: 1.65 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 104.0 
+ Step 1282 dt 0.120383 Cfl 0.449634 
+ Hmax 5.55 m Vmax 17.04 m/s 
+
+ MOVING MOMENTUM: 13.8 percent ( 3165.7 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.14 m3 
+
+ NUMERICAL VOLUME LOSS: 1.68 m3 
+
+ VOLUME CHECK: 1.0 
+.................
+
+ Time 106.1 
+ Step 1299 dt 0.121878 Cfl 0.449722 
+ Hmax 5.54 m Vmax 16.85 m/s 
+
+ MOVING MOMENTUM: 13.0 percent ( 2981.9 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.11 m3 
+
+ NUMERICAL VOLUME LOSS: 1.71 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 108.0 
+ Step 1315 dt 0.122999 Cfl 0.449753 
+ Hmax 5.55 m Vmax 16.71 m/s 
+
+ MOVING MOMENTUM: 12.3 percent ( 2816.7 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.08 m3 
+
+ NUMERICAL VOLUME LOSS: 1.75 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 110.0 
+ Step 1331 dt 0.124169 Cfl 0.449696 
+ Hmax 5.56 m Vmax 16.56 m/s 
+
+ MOVING MOMENTUM: 11.6 percent ( 2667.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.04 m3 
+
+ NUMERICAL VOLUME LOSS: 1.78 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 112.0 
+ Step 1347 dt 0.125713 Cfl 0.449637 
+ Hmax 5.57 m Vmax 16.38 m/s 
+
+ MOVING MOMENTUM: 11.1 percent ( 2533.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24870.01 m3 
+
+ NUMERICAL VOLUME LOSS: 1.81 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 114.0 
+ Step 1363 dt 0.127351 Cfl 0.449616 
+ Hmax 5.59 m Vmax 16.20 m/s 
+
+ MOVING MOMENTUM: 10.5 percent ( 2409.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.98 m3 
+
+ NUMERICAL VOLUME LOSS: 1.84 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 116.1 
+ Step 1379 dt 0.129039 Cfl 0.449641 
+ Hmax 5.61 m Vmax 16.02 m/s 
+
+ MOVING MOMENTUM: 10.0 percent ( 2285.9 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.95 m3 
+
+ NUMERICAL VOLUME LOSS: 1.87 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 118.0 
+ Step 1394 dt 0.130531 Cfl 0.449741 
+ Hmax 5.61 m Vmax 15.86 m/s 
+
+ MOVING MOMENTUM: 9.5 percent ( 2171.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.92 m3 
+
+ NUMERICAL VOLUME LOSS: 1.89 m3 
+
+ VOLUME CHECK: 1.0 
+................
+
+ Time 120.1 
+ Step 1410 dt 0.13183 Cfl 0.449719 
+ Hmax 5.62 m Vmax 15.66 m/s 
+
+ MOVING MOMENTUM: 9.0 percent ( 2061.1 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.90 m3 
+
+ NUMERICAL VOLUME LOSS: 1.92 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 122.1 
+ Step 1425 dt 0.132924 Cfl 0.449776 
+ Hmax 5.63 m Vmax 15.45 m/s 
+
+ MOVING MOMENTUM: 8.5 percent ( 1958.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.87 m3 
+
+ NUMERICAL VOLUME LOSS: 1.95 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 124.1 
+ Step 1440 dt 0.133836 Cfl 0.449833 
+ Hmax 5.64 m Vmax 15.22 m/s 
+
+ MOVING MOMENTUM: 8.2 percent ( 1870.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.84 m3 
+
+ NUMERICAL VOLUME LOSS: 1.98 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 126.1 
+ Step 1455 dt 0.134619 Cfl 0.44977 
+ Hmax 5.65 m Vmax 14.99 m/s 
+
+ MOVING MOMENTUM: 7.8 percent ( 1783.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.82 m3 
+
+ NUMERICAL VOLUME LOSS: 2.00 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 128.0 
+ Step 1469 dt 0.135629 Cfl 0.449773 
+ Hmax 5.67 m Vmax 14.78 m/s 
+
+ MOVING MOMENTUM: 7.4 percent ( 1705.0 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.79 m3 
+
+ NUMERICAL VOLUME LOSS: 2.02 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 130.1 
+ Step 1484 dt 0.136591 Cfl 0.449793 
+ Hmax 5.68 m Vmax 14.70 m/s 
+
+ MOVING MOMENTUM: 7.1 percent ( 1626.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.77 m3 
+
+ NUMERICAL VOLUME LOSS: 2.05 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 132.1 
+ Step 1499 dt 0.13754 Cfl 0.44979 
+ Hmax 5.69 m Vmax 14.64 m/s 
+
+ MOVING MOMENTUM: 6.8 percent ( 1555.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.74 m3 
+
+ NUMERICAL VOLUME LOSS: 2.07 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 134.1 
+ Step 1513 dt 0.138526 Cfl 0.449766 
+ Hmax 5.70 m Vmax 14.58 m/s 
+
+ MOVING MOMENTUM: 6.5 percent ( 1496.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.72 m3 
+
+ NUMERICAL VOLUME LOSS: 2.10 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 136.0 
+ Step 1527 dt 0.139554 Cfl 0.449717 
+ Hmax 5.71 m Vmax 14.51 m/s 
+
+ MOVING MOMENTUM: 6.3 percent ( 1435.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.70 m3 
+
+ NUMERICAL VOLUME LOSS: 2.12 m3 
+
+ VOLUME CHECK: 1.0 
+...............
+
+ Time 138.1 
+ Step 1542 dt 0.140968 Cfl 0.449693 
+ Hmax 5.73 m Vmax 14.40 m/s 
+
+ MOVING MOMENTUM: 6.0 percent ( 1378.3 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.67 m3 
+
+ NUMERICAL VOLUME LOSS: 2.14 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 140.1 
+ Step 1556 dt 0.142346 Cfl 0.449681 
+ Hmax 5.74 m Vmax 14.29 m/s 
+
+ MOVING MOMENTUM: 5.8 percent ( 1333.3 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.65 m3 
+
+ NUMERICAL VOLUME LOSS: 2.16 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 142.1 
+ Step 1570 dt 0.143736 Cfl 0.449699 
+ Hmax 5.75 m Vmax 14.18 m/s 
+
+ MOVING MOMENTUM: 5.6 percent ( 1286.3 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.63 m3 
+
+ NUMERICAL VOLUME LOSS: 2.19 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 144.1 
+ Step 1584 dt 0.14516 Cfl 0.449662 
+ Hmax 5.76 m Vmax 14.07 m/s 
+
+ MOVING MOMENTUM: 5.4 percent ( 1243.8 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.61 m3 
+
+ NUMERICAL VOLUME LOSS: 2.21 m3 
+
+ VOLUME CHECK: 1.0 
+.............
+
+ Time 146.0 
+ Step 1597 dt 0.14663 Cfl 0.449644 
+ Hmax 5.78 m Vmax 13.95 m/s 
+
+ MOVING MOMENTUM: 5.2 percent ( 1201.2 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.59 m3 
+
+ NUMERICAL VOLUME LOSS: 2.23 m3 
+
+ VOLUME CHECK: 1.0 
+..............
+
+ Time 148.1 
+ Step 1611 dt 0.148307 Cfl 0.449616 
+ Hmax 5.79 m Vmax 13.82 m/s 
+
+ MOVING MOMENTUM: 5.1 percent ( 1161.6 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.56 m3 
+
+ NUMERICAL VOLUME LOSS: 2.25 m3 
+
+ VOLUME CHECK: 1.0 
+.............
+
+ Time 150.0 
+ Step 1624 dt 0.150027 Cfl 0.449586 
+ Hmax 5.80 m Vmax 13.68 m/s 
+
+ MOVING MOMENTUM: 4.9 percent ( 1126.5 / 22915.1 ) 
+
+ FLOW VOLUME: 24869.54 m3 
+
+ NUMERICAL VOLUME LOSS: 2.27 m3 
+
+ VOLUME CHECK: 1.0 
+
+ LOW MASS FLUX...FINISHING CALCULATION!!!!
+ TOTAL RELEASE VOLUME: 24871.87 m3 
+
+ End time is Mon Sep  4 13:14:58 2023
+
+ ---------------------------------------------------
+ Finished writing RAMMS output file: T:\Ryggfonn\SIMULATION\DIV_SIM\RGF_REXT\RGF20210411\RGF20210411_D150_100_M300_m.out...
+ ---------------------------------------------------
+
+ Calculation time (seconds): 97.000000 

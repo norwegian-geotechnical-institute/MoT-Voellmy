@@ -1,0 +1,23 @@
+Altitude_limit_1: 500 m a.s.l
+Altitude_limit_2: 50 m a.s.l
+Format of following parameters: [  < 50 ] - [ 50 - 500 ] - [ > 500 ]
+ 
+Open slope parameters:
+Mu: 0.265 - 0.250 - 0.235
+Xi: 1500 - 1750 - 2000
+Channelled parameters:
+Mu: 0.310 - 0.300 - 0.280
+Xi: 1200 - 1350 - 1500
+Gully parameters:
+Mu: 0.400 - 0.380 - 0.370
+Xi: 1000 - 1100 - 1200
+Flat parameters:
+Mu: 0.245 - 0.230 - 0.215
+Xi: 2000 - 2250 - 2500
+Forest parameters:
+Mu (delta): 0.020 - 0.020 - 0.020
+Xi: 400 - 400 - 400
+ 
+RETURN PERIOD (y): 300
+VOLUME category: Small
+
