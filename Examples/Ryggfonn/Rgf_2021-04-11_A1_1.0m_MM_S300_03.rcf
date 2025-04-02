@@ -4,19 +4,19 @@ MoT-Voellmy input file version          2024-09-10
 Area of Interest                        Grasdalen
 UTM zone                                33N
 EPSG geodetic datum code                25833
-Run name                                Ryggfonn_2021-04-11_03
+Run name                                Ryggfonn_2021-04-11_01
 #
 # File names
 #
-Grid filename                           ../Input/dhm.asc
-Release depth filename                  ../Input/Ryggfonn_2021-04-11_05m_1.0m_h0.asc
+Grid filename                           ./Input/dhm.asc
+Release depth filename                  ./Input/Ryggfonn_2021-04-11_05m_1.0m_h0.asc
 Bed depth filename                      -
 Bed shear strength filename             -
 Forest density filename                 -
 Tree diameter filename                  -
 Start velocity u filename               -
 Start velocity v filename               -
-Output filename root                    ./Run_03/03
+Output filename root                    ./Run_01/01
 Output format                           ESRI_ASCII_Grid
 #
 # Physical parameters
@@ -47,14 +47,14 @@ Evolving geometry                       no
 #
 # Numerical parameters
 #
-Simulation time                  (s)    200.0
+Simulation time                  (s)    120.0
 Minimum time step                (s)    0.001
 Maximum time step                (s)    0.2
 Output interval                  (s)    1.0
 Write velocity vectors                  no
 Write maximum pressure                  yes
 Write instant. pressure                 yes
-Minimum flow depth               (m)    0.01
-Minimum speed                  (m/s)    0.01
+Minimum flow depth               (m)    0.05
+Minimum speed                  (m/s)    0.10
 Momentum threshold          (kg m/s)    3000000.0
 Initial CFL number               (-)    0.8
