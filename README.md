@@ -55,13 +55,13 @@ not be known to the Windows registry.
 
 On Linux and macOS, you need to make sure that the file permissions allow
 executing the code. On Windows, you can simply run the command from the command
-shell g (cmd.exe) if the executable is in a directory in the user's path.
+shell (cmd.exe) if the executable is in a directory in the user's path.
 
 __Command synopsis:__<br><br>
 `MoT-Voellmy.<version date> <(path)name of simulation control file>`<br><br>
 `<version date>` is to be replaced by the date characterizing the version you
 have downloaded and wish to use. At the time of writing, the most recent
-version is 2022-10-28. Windows users may have to write<br><br>
+version is 2025-02-10. Windows users may have to write<br><br>
 `MoT-Voellmy.<version date>.exe <(path)name of simulation control file>`
 
 The simulation control file (SCF) is a simple text file in a specific format.
