@@ -1,0 +1,59 @@
+# Run information
+#
+MoT-Voellmy input file version          2021-10-25
+Area of Interest                        11192_Volda
+UTM zone                                33N
+EPSG geodetic datum code                25833
+Run name                                RA6157_df2_v26_none
+#
+# File names
+#
+Grid filename                           RA6157_dem.asc
+Release depth filename                  RA6157_wf_h.asc
+Bed depth filename                      RA6157_b0.asc
+Bed shear strength filename             RA6157_tauc.asc
+Forest density filename                 RA6157_nD.asc
+Tree diameter filename                  RA6157_tD.asc
+Start velocity u filename               -
+Start velocity v filename               -
+Output filename root                    Run_26_none
+Output format                           ESRI_ASCII_Grid
+#
+# Physical parameters
+#
+Gravitational acceleration   (m/s^2)    9.81
+Density                     (kg/m^3)    250.0
+Rheology                                Voellmy
+Parameters                              variable
+Dry-friction coefficient         (-)    RA6157_mu.asc
+Turbulent drag coefficient       (-)    RA6157_k.asc
+Effective drag height            (m)    0.0
+Centrifugal effects                     yes
+Passive earth-pressure coeff.    (-)    1.0
+#
+Forest effects                          yes
+Tree drag coefficient            (-)    1.0
+Modulus of rupture             (MPa)    50.0
+Forest decay coefficient       (m s)    0.15
+#
+Entrainment                             none
+Erosion coefficient              (-)    0.0
+Bed strength profile                    global
+Bed friction coefficient         (-)    0.25
+Bed density                 (kg/m^3)    140.0
+Deposition                              no
+Evolving geometry                       no
+#
+# Numerical parameters
+#
+Simulation time                  (s)    180.0
+Minimum time step                (s)    0.0001
+Maximum time step                (s)    0.5000
+Output interval                  (s)    1000.0
+Write velocity vectors                  no
+Write maximum pressure                  no
+Write instant. pressure                 no
+Minimum flow depth               (m)    0.05
+Minimum speed                  (m/s)    0.1
+Momentum threshold          (kg m/s)    100.0
+Initial CFL number               (-)    0.8

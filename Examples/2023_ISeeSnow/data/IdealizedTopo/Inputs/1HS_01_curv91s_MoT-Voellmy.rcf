@@ -1,0 +1,60 @@
+# Run information
+#
+MoT-Voellmy input file version          2024-09-10
+Area of Interest                        IdealizedTopo
+UTM zone                                33N
+EPSG geodetic datum code                25833
+Run name                                1HS_01_curv91s_MoT-Voellmy
+#
+# File names
+#
+Grid filename                           ./DEM_IdealizedTopo.asc
+Release depth filename                  ./release1HSField5m.asc
+Bed depth filename                      -
+Bed shear strength filename             -
+Forest density filename                 -
+Tree diameter filename                  -
+Start velocity u filename               -
+Start velocity v filename               -
+Output filename root                    ../Results/curv91s/1HS_01_curv91s_MoT-Voellmy
+Output format                           ESRI_ASCII_Grid
+#
+# Physical parameters
+#
+Gravitational acceleration   (m/s^2)    9.81
+Flow density                (kg/m^3)    250.0
+Bed density                 (kg/m^3)    140.0
+Deposit density             (kg/m^3)    400.0
+Rheology                                Voellmy
+Parameters                              constant
+Dry-friction coefficient         (-)    0.40
+Turbulent drag coefficient       (-)    0.004905
+Effective drag height            (m)    0.0
+Centrifugal effects                     yes
+Passive earth-pressure coeff.    (-)    1.0
+#
+Forest effects                          no
+Tree drag coefficient            (-)    1.0
+Modulus of rupture             (MPa)    50.0
+Forest decay coefficient       (m/s)    0.15
+#
+Entrainment                             none
+Erosion coefficient              (-)    0.0
+Bed strength profile                    global
+Bed friction coefficient         (-)    0.25
+Deposition                              no
+Evolving geometry                       no
+#
+# Numerical parameters
+#
+Simulation time                  (s)    90.0
+Minimum time step                (s)    0.0001
+Maximum time step                (s)    0.5000
+Output interval                  (s)    1.0
+Write velocity vectors                  no
+Write maximum pressure                  no
+Write instant. pressure                 no
+Minimum flow depth               (m)    0.01
+Minimum speed                  (m/s)    0.01
+Momentum threshold          (kg m/s)    5000000.0
+Initial CFL number               (-)    0.8

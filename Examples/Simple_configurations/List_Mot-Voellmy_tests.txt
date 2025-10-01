@@ -1,0 +1,29 @@
+Test runs with MoT-Voellmy v.2016-06-30, Jan./Febr. 2018
+========================================================
+
+
+The goal of these tests is to determine
+  - whether MoT-Voellmy gives reliable results in simple situations,
+  - whether MoT-Voellmy compares well with RAMMS,
+  - how strong the grid-size dependence is at practical grid resoultions,
+  - how strongly the centrifugal force affects the run-out distance,
+  - how the results depend on the choice of CFL number,
+  - and how strongly sideways propagation shortens the run-out distance.
+
+
+1   Tests without earth pressure on a long uniform slope
+    ----------------------------------------------------
+
+01  gully_01.cmd
+
+    Uses gully.asc, gully_01_h.asc (single-row release) to test that mass
+    remains in place if μ > tan θ.
+    
+    Mass indeed remains in place and MoT-Voellmy reports avalanche as stopped.
+    However, output of stopped mass is empty, needs fixing!
+
+02  gully_02.cmd
+    Uses gully.asc, gully_01_h.asc (single-row release) to test acceleration
+    and terminal velocity for a quasi-mass point. The earth-pressure
+    coefficient is set to 0.
+    Slope angle θ = arctan(0.5)
