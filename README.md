@@ -1,4 +1,4 @@
-# MoT-Voellmy –– a Numerical Model for Avalanche Motion
+# MoT-Voellmy – a Numerical Model for Avalanche Motion
 
 ## Introduction
 
