@@ -1,7 +1,6 @@
 /*******************************************************************************
 
-  File:   MoT-Voellmy.2025-05-20.c             Dieter Issler, 2025-05-20
-
+  File:   MoT-Voellmy.2025-05-20.c             Dieter Issler, 2026-04-20
   Simulation of the motion of a gravity mass flow on a surface composed of
   regular quadrangles that project onto rectangles in the horizontal plane.
   In this version, a simplified variant of Fey's cell-centered Method of
@@ -49,8 +48,8 @@
 #endif
 
 /** Code version */
-#define VERSION         "2025-05-20"
-#define INPUT_VERSION   "2024-09-10"
+#define VERSION         "2026-04-20"
+#define INPUT_VERSION   "2026-04-20"
 
 /** Include files */
 #include <stdio.h>
@@ -106,6 +105,7 @@ FILE *gfp;                          /**< Pointer to grid file */
 
 /** Variables concerning the numerics */
 
+int    ifv;                         /**< Input File Version (1, 2, 3, 4) */
 long   loc_dump_num;                /**< Location of # dumps in output file */
 size_t n_dump;                      /**< Number of time slices written */
 size_t nts = 0;                     /**< Time step number */
@@ -122,7 +122,9 @@ double h_lim = 5.0;                 /**< Max. effective flow depth for drag term
                                        reasonable range is 5–10 m. */
 double h_min = 0.05;                /**< Minimum flow height in active cells */
 double u_min = 0.01;                /**< Minimum flow speed in active cells */
-double mom_thr;                     /**< Stop criterion for flow momentum */
+double mom_thr;                     /**< Old stop criterion for flow momentum */
+double mom_fraction = 0.05;         /**< New stop criterion for flow momentum */
+double mom_max = 0.0;               /**< Running max. of quantity of movement */
 char   *fmt;                        /**< w: ESRI_ASCII_Grid, wb: BinaryTerrain */
 char   write_vectors[4];            /**< Switch for writing u, v components */
 char   write_max_press[4];          /**< Switch for writing maximum pressure */
@@ -242,8 +244,9 @@ void   primivar(double ***);        /**< Computes primitive variables h,u,v,s
                                          from conserved fields h, hu, hv */
 double ***source_terms(void);       /**< Computes source terms mass, momentum */
 double find_dt(void);               /**< New time step from CFL condition */
-double update_boundaries(double ***);   /**< Determine new active region and
-                                             quantity of movement */
+void   update_boundaries(double ***, double *, double *);
+                                    /**< Determine new active region and
+                                         quantity of movement */
 void   create_dir(char *, char *);  /**< Create output directories as needed */
 
 
@@ -259,7 +262,7 @@ int main(int argc, char *argv[])
 
   char   reason[80];
   size_t i, j, p, q;
-  int   di, dj;
+  int    di, dj;
   int    n_step = 0;
   int    repeat_flag;                   /**< Time step needs to be repeated */
   int    stop_code = 0;                 /**< Reason why simulation terminated */
@@ -327,13 +330,11 @@ int main(int argc, char *argv[])
     printf("   main:  Step %5d,  t = %8.4f s,  %7.0f m^3,  ["ST","ST"]x["ST","ST"]\n",
            n_step, t, mov_vol, i_min, i_max, j_min, j_max);
     if (t >= t_dump + dt_dump && t_max >= dt_dump) {
-      printf("   main:  Calling write_data()...\n");
       write_data(t, h, h, b, d, s, u, v, p_imp, nD,
                  i_min, i_max, j_min, j_max, 1, fmt);
       t_dmpp = t;
       t_dump += dt_dump;
       n_dump++;
-      printf("   main:  write_data() has returned.\n");
     }
 
     if (curve == 0)                     /* Without curvature effects */
@@ -552,11 +553,13 @@ int main(int argc, char *argv[])
 
     /* Update boundaries and test if avalanche still moves: */
     primivar(f_new);
-    mom_tot = update_boundaries(f_new);
-    if (mom_tot < mom_thr && n_step > 10) {
-      strncpy(reason, "avalanche has stopped or left the domain", 43);
-      stop_code = 1;
-      break;                            /* Break out of time loop. */
+    update_boundaries(f_new, &mom_tot, &mom_max);
+    if ( ( (ifv >= 4 && mom_tot < mom_fraction*mom_max)
+           || ((ifv == 2 || ifv == 3) && mom_tot < mom_thr) )
+         && (n_step > 10) ) {
+        strncpy(reason, "avalanche has stopped or left the domain", 43);
+        stop_code = 1;
+        break;                            /* Break out of time loop. */
     }
 
     /* Update time: */
@@ -876,7 +879,7 @@ double find_dt(void)
    thresholds. (One row of cells is added in every direction to prevent
    spurious effects.) */
 
-double update_boundaries(double ***f)
+void update_boundaries(double ***f, double *mom_tot, double *mom_max)
 
 {
   size_t i, j;
@@ -924,10 +927,10 @@ double update_boundaries(double ***f)
   for (i = 0; i < m; i++)
     for (j = 0; j < n; j++)
       tot_vol += f[i][j][0];
-  printf("      V_tot = %7.0f m³  V_mov = %7.0f m³  J_tot = %6.0f t m/s\n",
-         tot_vol, mov_vol, 0.001*rho*mom);
 
-  return(mom);
+  *mom_tot = mom;                       /* Update instant. qty. of movement */
+  *mom_max = MAX(*mom_max, *mom_tot);   /* Update max. qty. of movement */
+
 }
 
 /***********************************/
@@ -966,8 +969,8 @@ void read_grid_file(void)
     exit(31);
   }
 
-  if (!strcmp(xll, "xllcenter"))            /* If necessary, convert cell */
-    xllcorner -= (0.5*cellsize);            /* center to cell corner      */
+  if (!strcmp(xll, "xllcenter"))            /* If necessary, convert from */
+    xllcorner -= (0.5*cellsize);            /* cell center to cell corner */
   if (!strcmp(yll, "yllcenter"))            /* coordinates */
     yllcorner -= (0.5*cellsize);
 
@@ -1361,11 +1364,10 @@ int read_raster(char *raster_fn, double** X, double xll, double yll,
   /* Read data one by one. */
   for (j = (int) n-1; j >= 0; j--) {
     for (i = 0; i < (int) m; i++) {
-      /* lest = fscanf(ifp, "%lf", &fval);
-      if (lest == 0) { */
       if (fscanf(ifp, "%lf", &fval) != 1) {
         printf("   Error reading data from file %s at (%d,%d). STOP!\n\n",
                raster_fn, i, j);
+        fclose(ifp);
         exit(52);
       }
       if (fval >= min_val)
@@ -1451,7 +1453,7 @@ void write_data(double tid, double **h_dep, double **hf, double **bs,
   /* Call writeout repeatedly to write the files */
 
   if (pass == 1) {                  /* Write timeslice of the fields */
-    printf("   write_data:  Output "ST04" at time %7.2f...   ", n_dump, tempus);
+    printf("   write_data:  Output "ST04" at time %7.2f s... ", n_dump, tempus);
     /* Flow depth */
     sprintf(suf, "_h_"ST04, n_dump);
     writeout(h, suf, formt, imin, imax, jmin, jmax, header,
@@ -1557,7 +1559,7 @@ void write_data(double tid, double **h_dep, double **hf, double **bs,
 /*******************/
 
 /** Called by write_data repeatedly to create output files in AAIGrid or
-    Binaryterrain 1.3 format either for time slice or max. values at the
+    BinaryTerrain 1.3 format either for time slice or max. values at the
     end of a run. */
 
 void writeout(double **F, char* suffix, char* formt, size_t imin, size_t imax,
@@ -1587,12 +1589,13 @@ void writeout(double **F, char* suffix, char* formt, size_t imin, size_t imax,
   else                                  /* ESRI ASCII Grid format */
     strncat(fn, ".asc", 5);
 
+  /* Open the output file */
   if ((ofp = fopen(fn, fmt)) == NULL) {
     printf("\n   writeout:  Failed to open output file %s. STOP!\n\n", fn);
     exit(60);
   }
 
-  /* Construct the file headers and afterwards write the data: */
+  /* Construct the file headers and afterwards write the data */
 
   if (!strncmp(formt, "wb", 2)) {       /* BinaryTerrain format */
     strncpy(headr+114, descr, 32);
@@ -1672,7 +1675,7 @@ double **allocate2(size_t rows, size_t cols)
   }
 
   /* Now allocate space for each of the 1D subarrays  */
-  for (i = 0; i < m; i++) {
+  for (i = 0; i < rows; i++) {
     tries = 0;
     while (tries < TRIES_MAX
            && (p[i] = (double*) malloc(cols * sizeof(double))) == NULL) {
@@ -2039,11 +2042,10 @@ void read_command_file(char *ifn)
   char   curveff[4];                /* Curvature effects (yes/no) */
   char   foresteff[8];              /* Drag in forest (yes/no) */
   char   line[512];                 /* Hold a line of input file */
-  int    ifv = 0;                   /* Input file version, 0 if "2024-09-10",
-                                       1 if "2021-10-25", 2 if "2020-06-23" */
   int    n_items;                   /* # data lines in input file */
   int    lest = 0;                  /* Counts # variables read */
   int    dummy = 0;                 /* Counts # irrelevant chars read. */
+
 
   if ((ifp = fopen(ifn, "r")) == NULL) {
     printf("   Failed to open %s. STOP!\n\n", ifn);
@@ -2065,21 +2067,25 @@ void read_command_file(char *ifn)
       exit(10);
     }
   }
-  /* Check whether input file format is newest version (ifv = 0): */
+  /* Check whether input file format is an accepted version (ifv > 0) */
   sscanf(line, "MoT-Voellmy input file version %[^\r\n]\n", file_version);
-  if (strncmp(file_version, INPUT_VERSION, 10)) {
-    /* Accept file formats 2021-10-25 (ifv = 1) and 2020-06-23 (ifv = 2) but
-       reject earlier ones: */
-    if (!strncmp(file_version, "2021-10-25", 10))
-      ifv = 1;
-    else if (!strncmp(file_version, "2020-06-23", 10))
-      ifv = 2;
-    else {
-      printf("   Input file format version %s not supported. STOP!\n\n",
-             file_version);
-      exit(11);
-    }
+  /* Accept file formats 2020-06-23 (ifv=1), 2021-10-25 (ifv=2),
+     2024-09-10 (ifv=3) and 2026-04-20 (ifv=4) but reject earlier ones */
+  if (!strncmp(file_version, "2020-06-23", 10))
+    ifv = 1;
+  else if (!strncmp(file_version, "2021-10-25", 10))
+    ifv = 2;
+  else if (!strncmp(file_version, "2024-09-10", 10))
+    ifv = 3;
+  else if (!strncmp(file_version, "2026-04-20", 10))
+    ifv = 4;
+  else {
+    printf("   Input file format version %s not supported. STOP!\n\n",
+           file_version);
+    exit(11);
   }
+  printf("   read_command_file:  run configuration file v%s detected\n\n",
+         file_version);
   lest += fscanf(ifp, "Area of Interest %[^\r\n]\n", topo_name);
   printf("%2d  topo_name       = %s\n", lest, topo_name);
   lest += fscanf(ifp, "UTM zone %[^\r\n]\n", utm_str);
@@ -2088,8 +2094,12 @@ void read_command_file(char *ifn)
   printf("%2d  epsg            = %d\n", lest, epsg);
   lest += fscanf(ifp, "Run name %[^\r\n]\n#\n", run_name);
   printf("%2d  run_name        = %s\n", lest, run_name);
-  if (ifv < 2)
-    dummy += fscanf(ifp, "# File names\n#\n");
+  if (ifv >= 2) {                       /* Exclude v2020-06-23 */
+    dummy += fscanf(ifp, "%[^\r\n]\n", line);
+    printf("**%s**\n", line);
+    dummy += fscanf(ifp, " %[^\r\n]\n", line);
+    printf("**%s**\n", line);
+  }
   lest += fscanf(ifp, "Grid filename %[^\r\n]\n", grid_fn);
   printf("%2d  grid_fn         = %s\n", lest, grid_fn);
   lest += fscanf(ifp, "Release depth filename %[^\r\n]\n", h_fn);
@@ -2098,7 +2108,7 @@ void read_command_file(char *ifn)
   printf("%2d  b_fn            = %s\n", lest, b_fn);
   lest += fscanf(ifp, "Bed shear strength filename %[^\r\n]\n", tauc_fn);
   printf("%2d  tauc_fn         = %s\n", lest, tauc_fn);
-  if (ifv < 2) {                        /* New: forest destruction is option */
+  if (ifv >= 2) {                       /* New: forest destruction is option */
     lest += fscanf(ifp, "Forest density filename %[^\r\n]\n", nD_fn);
     printf("%2d  nD_fn           = %s\n", lest, nD_fn);
     lest += fscanf(ifp, "Tree diameter filename %[^\r\n]\n", tD_fn);
@@ -2127,7 +2137,7 @@ void read_command_file(char *ifn)
   }
   printf("%2d  fmt             = %s\n", lest, fmt);
 
-  if (ifv < 2)
+  if (ifv >= 2)                         /* Exclude v2020-06-23 */
     dummy += fscanf(ifp, "# Physical parameters\n#\n");
   /* Read the value of the gravitational constant as a string, check for the
      decimal sign (period or comma) and set the locale to "C" for the former
@@ -2166,7 +2176,7 @@ void read_command_file(char *ifn)
   printf("%2d  g               = %.2f\n", lest, g);
 
   /* Continue to read normally. */
-  if (ifv == 0) {                       /* Changes in v.2024-09-10! */
+  if (ifv >= 3) {                       /* Changes in v2024-09-10 ff. */
     lest += fscanf(ifp, "Flow density (kg/m^3) %lf\n", &rho);
     printf("%2d  rho             = %.3f\n", lest, rho);
     lest += fscanf(ifp, "Bed density (kg/m^3) %lf\n", &rho_b);
@@ -2199,11 +2209,11 @@ void read_command_file(char *ifn)
     printf("%2d  k_fn            = %s\n", lest, k_fn);
   }
 
-  if (ifv < 2) {                        /* Option of modified drag term */
+  if (ifv >= 2) {                       /* Option of modified drag term */
     lest += fscanf(ifp, "Effective drag height (m) %lf\n", &h_drag);
     printf("%2d  h_drag          = %.1f\n", lest, h_drag);
   }
-  else                                  /* Standard drag term */
+  else                                  /* Standard drag term only */
     h_drag = 0.0;
 
   lest += fscanf(ifp, "Centrifugal effects %s\n", curveff);
@@ -2214,7 +2224,7 @@ void read_command_file(char *ifn)
   lest += fscanf(ifp, "Passive earth-pressure coeff. (-) %lf\n", &kp);
   printf("%2d  kp              = %.2f\n", lest, kp);
 
-  if (ifv < 2) {
+  if (ifv >=2) {                       /* Exclude v2020-06-23 */
     lest += fscanf(ifp, "#\nForest effects %[^\r\n]\n", foresteff);
     printf("%2d  foresteff       = %s\n", lest, foresteff);
   }
@@ -2229,14 +2239,14 @@ void read_command_file(char *ifn)
   }
   lest += fscanf(ifp, "Tree drag coefficient (-) %lf\n", &cD);
   printf("%2d  cD              = %4.2f\n", lest, cD);
-  if (ifv < 2) {
+  if (ifv >= 2) {                       /* Exclude v2020-06-23 */
     lest += fscanf(ifp, "Modulus of rupture (MPa) %lf\n", &MoR);
     printf("%2d  MoR             = %.1f\n", lest, MoR);
     lest += fscanf(ifp, "Forest decay coefficient (m/s) %lf\n", &decay_coeff);
     printf("%2d  tree_fail       = %4.2f\n", lest, decay_coeff);
   }
 
-  if (ifv < 2)
+  if (ifv >= 2)                         /* Exclude v2020-06-23 */
     dummy += fscanf(ifp, "#\n");
   lest += fscanf(ifp, "Entrainment %[^\r\n]\n", erosion);
   printf("%2d  erosion         = %s\n", lest, erosion);
@@ -2262,6 +2272,10 @@ void read_command_file(char *ifn)
   else if ((eromod == 1 || eromod == 3 || eromod == 4) && k_erod <= 0.0) {
     printf("   Warning:  You need k_erod > 0 to obtain erosion!\n");
     k_erod = 0.0;
+  }
+  else if (eromod == 3 && (k_erod < 200.0 || k_erod > 10000.0) {
+    printf("   Warning:  k_erod outside bounds, set to 5000 m²/s².\n");
+    k_erod = 5000.0;
   }
   printf("%2d  k_erod          = %5.3f\n", lest, k_erod);
 
@@ -2290,7 +2304,7 @@ void read_command_file(char *ifn)
     lest += fscanf(ifp, "Bed friction coefficient (-) %[^\r\n]\n", mu_s_fn);
     printf("%2d  mu_s_fn = %s\n", lest, mu_s_fn);
   }
-  if (ifv > 0) {                        /* Versions 2020-06-23, 2021-10-25 */
+  if (ifv <= 2) {                       /* Versions 2020-06-23, 2021-10-25 */
     lest += fscanf(ifp, "Bed density (kg/m^3) %lf\n", &rho_b);
     printf("%2d  rho_b           = %.3f\n", lest, rho_b);
   }
@@ -2320,7 +2334,7 @@ void read_command_file(char *ifn)
   else
     printf("%2d  dyn_surf        = %d\n", lest, dyn_surf);
 
-  if (ifv < 2)
+  if (ifv >= 2)                         /* Not present in v2020-06-23 */
     dummy += fscanf(ifp, "#\n# Numerical parameters\n");
   lest += fscanf(ifp, "#\nSimulation time (s) %lf\n", &t_max);
   printf("%2d  t_max           = %.2f\n", lest, t_max);
@@ -2340,12 +2354,18 @@ void read_command_file(char *ifn)
   printf("%2d  h_min           = %.4f\n", lest, h_min);
   lest += fscanf(ifp, "Minimum speed (m/s) %lf\n", &u_min);
   printf("%2d  u_min           = %.4f\n", lest, u_min);
-  lest += fscanf(ifp, "Momentum threshold (kg m/s) %lf\n", &mom_thr);
-  printf("%2d  mom_thr         = %.1f\n", lest, mom_thr);
+  if (ifv > 1 && ifv < 4) {             /* Versions 2021-10-25, 2024-09-10 */
+    lest += fscanf(ifp, "Momentum threshold (kg m/s) %lf\n", &mom_thr);
+    printf("%2d  mom_thr         = %.1f\n", lest, mom_thr);
+  }
+  else if (ifv >= 4) {                  /* Versions 2026-04-20 ff. */
+    lest += fscanf(ifp, "Minimum momentum fraction (%%) %lf\n", &mom_fraction);
+    printf("%2d  mom_fraction    = %.1f\n", lest, mom_fraction);
+  }
   lest += fscanf(ifp, "Initial CFL number (-) %lf\n", &cfl);
   printf("%2d  CFL             = %5.3f\n", lest, cfl);
 
-  n_items = (ifv == 0 ? 46 : (ifv == 1 ? 45 : 41));
+  n_items = (ifv >= 3 ? 46 : (ifv == 2 ? 45 : 41));
   fclose(ifp);
   if (lest != n_items) {
      printf("   %d items read instead of %d. STOP!\n\n", lest, n_items);
@@ -2458,11 +2478,27 @@ void read_command_file(char *ifn)
     exit(25);
   }
 
-  if (h_min <= 0.0 || u_min <= 0.0 || mom_thr <= 0.0) {
-    printf("   h_min, u_min, mom_thr > 0 required. STOP!\n\n");
+  if (h_min <= 0.0 || u_min <= 0.0) {
+    printf("   h_min, u_min > 0 required. STOP!\n\n");
     exit(26);
   }
-  mom_thr /= rho;
+
+  if (ifv <= 3) {
+    if (mom_thr < 0.0) {
+      mom_thr = 0.0;
+      printf("   mom_thr >= 0 required, set to 0.0\n");
+    }
+    if (ifv >= 2)                       /* Versions 2021-10-25, 2024-09-10 */
+      mom_thr /= rho;                   /* Convert to volume*speed (m⁴/s) */
+  }
+  else {                                /* Versions 2026-04-20 ff. */
+    if (0.0 <= mom_fraction && mom_fraction < 100.0)
+      mom_fraction *= 0.01;             /* Convert from percent to fraction */
+    else {
+      printf("   Min. momentum fraction must be in [0, 100]%%, set to 5%%\n");
+      mom_fraction = 0.05;
+    }
+  }
 
   strcpy(max_fn, out_fn);
   if ((strrchr(max_fn, '.') == NULL && strlen(max_fn) > 252)

@@ -1,0 +1,67 @@
+### gnuplot script for plotting the analytic solution of the kinetic energy
+### of a mass point along a hockeystick profile with a circular transition
+### segment.
+### The friction law is of the Voellmy or PCM-type with the parameters μ, k.
+### The extra friction in the bend due to the centrifugal force can be turned
+### on or off.
+
+# Basic geometric input quantities:
+g    = 10.0                             # Gravitational acceleration (m/s²)
+A    = 1000.0                           # Horizontal length of segment 1 (m)
+R    = 100.0                            # Curvature radius (segment 2, m)
+phi  = 45.0                             # Slope angle of segment 1 (°)
+h    = 1.0                              # Constant flow depth/thickness (m)
+
+# Derived geometic quantities:
+rphi = pi * phi / 180.0                 # Slope angle in radians
+sphi = sin(rphi)                        # Sine of slope angle
+cphi = cos(rphi)                        # Cosine of slope angle
+tphi = tan(rphi)
+B    = R * sphi
+H    = A * tphi
+I    = R * (1.0-cphi)
+
+# Friction parameters (preliminary values):
+mu   = 0.5
+k    = 0.002
+a    = 0.0
+
+# Definitions of functions:
+#   Topography
+z(x)  = x <= A ? H + I - x*tphi : x <= A+B ? R - sqrt(R**2 - (A+B-x)**2) : 0.0
+th(x) = asin((A+B-x)/R)
+#   Gravity and Coulomb friction
+a(x) = (x <= A || x >= A+B) ? 2*k/h : 2*k/h + mu/R
+b(x) = x <= A ? g * (sin(rphi) - mu*cos(rphi)) \
+              : x <= A+B ? g * ((A+B-x)/R - mu*cos(theta(x))) \
+                         : -mu*g
+
+#   Inclined plane
+K1(x) = (a(x) == 0.0 ? (tphi-mu) * g * x \
+                     : g/a(x) * (sphi - mu*cphi) * (1.0 - exp(-a(x)*x/sphi)))
+
+#   Curved segment
+K2(x) = K1(A) * exp(-a(x)*(phi-th(x))) \
+        - g*R * ((a(x)-mu)*(sphi - (A+B-x)/R*exp(-a(x)*(phi-(A+B-x)/R))) \
+                 + (1+mu*a(x))*(cphi *th(x)) - (1-mu*a(x)*R)) / (1+a(x)**2)
+
+#   Horizontal run-out
+K3(x) = (a(x) == 0.0 ? K2(A+B) - mu*g*(A+B-x) \
+                     : (K2(A+B) + mu*g/a(x)) * exp(-a*(x(x)-A-B)) - mu*g/a(x))
+
+#   Composite function:
+K(x) = (x <= A ? K1(x) : (x < A+B ? K2(x) : K3(x)))
+
+# Set the plot properties:
+set xrange  [0:2000.0]
+set yrange  [0:5000.0]
+set y2range [0:1050.0]
+set ytics   nomirror
+set y2tics
+set xlabel "Horizontal distance $x$ (m)"
+set ylabel "Specific kinetic energy (m²/s²)"
+set y2label "Path profile $z(x)$"
+
+# Plot pure Coulomb and Voellmy friction with and without curvature effects:
+plot kappa = 0.0, K(x) axes x1y1 ti "Coulomb, no curv." wi li lw 3 #, \
+#    z(x) axes x1y2 ti "Path profile" wi li lw 2

@@ -1,10 +1,10 @@
 # Run information
 #
-MoT-Voellmy input file version          2024-09-10
+MoT-Voellmy input file version          2026-04-20
 Area of Interest                        Flateyri
 UTM zone                                33N
 EPSG geodetic datum code                25833
-Run name                                Flateyri RA 2, Run 1
+Run name                                Flateyri RA 2, Run 2
 #
 # File names
 #
@@ -16,7 +16,7 @@ Forest density filename                 -
 Tree diameter filename                  -
 Start velocity u filename               -
 Start velocity v filename               -
-Output filename root                    /data/Models/MoT-Voellmy/Tests/Flateyri/Run_01/01
+Output filename root                    /data/Models/MoT-Voellmy/Tests/Flateyri/Run_02/02
 Output format                           ESRI_ASCII_Grid
 #
 # Physical parameters
@@ -56,5 +56,5 @@ Write maximum pressure                  yes
 Write instant. pressure                 no
 Minimum flow depth               (m)    0.01
 Minimum speed                  (m/s)    0.01
-Momentum threshold          (kg m/s)    100000000.0
+Minimum momentum fraction        (%)    1.0
 Initial CFL number               (-)    0.8

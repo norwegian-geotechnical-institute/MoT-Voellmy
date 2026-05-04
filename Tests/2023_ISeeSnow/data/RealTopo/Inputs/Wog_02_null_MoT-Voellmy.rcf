@@ -1,22 +1,22 @@
 # Run information
 #
 MoT-Voellmy input file version          2024-09-10
-Area of Interest                        Flateyri
-UTM zone                                33N
-EPSG geodetic datum code                25833
-Run name                                Flateyri RA 2, Run 1
+Area of Interest                        RealTopo
+UTM zone                                32N
+EPSG geodetic datum code                25832
+Run name                                relWog_02_null_MoT-Voellmy
 #
 # File names
 #
-Grid filename                           /data/Models/MoT-Voellmy/Tests/Flateyri/RA0002_dem.asc
-Release depth filename                  /data/Models/MoT-Voellmy/Tests/Flateyri/RA0002_nf_h.asc
+Grid filename                           ./DEM_RealTopo.asc
+Release depth filename                  ./relWogField5m.asc
 Bed depth filename                      -
 Bed shear strength filename             -
 Forest density filename                 -
 Tree diameter filename                  -
 Start velocity u filename               -
 Start velocity v filename               -
-Output filename root                    /data/Models/MoT-Voellmy/Tests/Flateyri/Run_01/01
+Output filename root                    ../Results/null/Wog_02_null_MoT-Voellmy
 Output format                           ESRI_ASCII_Grid
 #
 # Physical parameters
@@ -27,9 +27,9 @@ Bed density                 (kg/m^3)    140.0
 Deposit density             (kg/m^3)    450.0
 Rheology                                Voellmy
 Parameters                              constant
-Dry-friction coefficient         (-)    0.40
-Turbulent drag coefficient       (-)    0.001
-Effective drag height            (m)    3.0
+Dry-friction coefficient         (-)    0.20
+Turbulent drag coefficient       (-)    0.004905
+Effective drag height            (m)    0.0
 Centrifugal effects                     no
 Passive earth-pressure coeff.    (-)    1.0
 #
@@ -47,14 +47,14 @@ Evolving geometry                       no
 #
 # Numerical parameters
 #
-Simulation time                  (s)    200.0
+Simulation time                  (s)    600.0
 Minimum time step                (s)    0.001
-Maximum time step                (s)    0.2
+Maximum time step                (s)    0.5000
 Output interval                  (s)    1.0
 Write velocity vectors                  no
-Write maximum pressure                  yes
+Write maximum pressure                  no
 Write instant. pressure                 no
 Minimum flow depth               (m)    0.01
 Minimum speed                  (m/s)    0.01
-Momentum threshold          (kg m/s)    100000000.0
+Momentum threshold          (kg m/s)    30000000.0
 Initial CFL number               (-)    0.8
