@@ -52,3 +52,6 @@ dkms.conf
 
 # Old versions
 v2025*/*
+
+# Mac extras
+*.DS_Store

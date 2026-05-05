@@ -103,7 +103,7 @@ SRC_DIR=.
 SRC_EXT=c
 SOURCES=$(wildcard $(SRC_DIR)/*.$(SRC_EXT))
 EXECUTABLE=MoT-Voellmy
-DATE=2026-04-20 # $(shell date +%Y-%m-%d)
+DATE=2026-05-04 # $(shell date +%Y-%m-%d)
 
 # Compiler and Flags
 CXX=gcc

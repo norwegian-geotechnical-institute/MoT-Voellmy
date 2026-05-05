@@ -14,13 +14,13 @@ In many respects, MoT-Voellmy is similar to the widely used (commercial) code [R
 
 ### Required input data
 
-MoT-Voellmy is started from the command line with one argument, the name of the _**R**un **C**onfiguration **F*ile_ (RCF) as
+MoT-Voellmy is started from the command line with one argument, the name of the _**R**un **C**onfiguration **F**ile_ (RCF) as
 
-    <path to the code>/MoT-Voellmy-<linux|macOS>.2026-04-20 <RCF>
+    <path to the code>/MoT-Voellmy-<linux|macOS>.2026-05-04 <RCF>
 
 on Linux and macOS, or as
 
-    <path to the code>\MoT-Voellmy-win64.2026-04-20.exe <RCF>
+    <path to the code>\MoT-Voellmy-win64.2026-05-04.exe <RCF>
 	
 on MS Windows.
 
@@ -28,12 +28,14 @@ In the RCF, the user specifies the spatial input data by listing the correspondi
 
 In the folder for MoT-Voellmy, there is a template RCF in different versions designated by their implementation date. The code is backwards-compatible with all the listed versions, but it is strongly recommended to use the newest version – older versions do not support the newest options implemented in MoT-Voellmy. In the following, only the current version is discussed.
 
-All the data can be changed in a text editor, but all lines must be present and their sequence preserved (including comment lines starting with #). The keys on the left side must not be changed. The RCF should be renamed so that the user will still remember the purpose of the simulation some years later. It is recommended to save the RCFs in the folder or subfolder of the current project.  
+All the data can be changed in a text editor, but all lines must be present and their sequence preserved (including comment lines starting with #). The keys on the left side must not be changed. The RCF should be renamed so that the user will still remember the purpose of the simulation some years later. It is recommended to save the RCFs in the folder or subfolder of the current project.
+
+In the following, the parameters will be discussed in a different sequence than the one used in the RCF. At the end of the document, a full example RCF is displayed.  
 
 
-#### Auxiliary information
+#### Run information
 
-General information on the present run, not relevant for the program but for the user:
+General information on the present run; except for the first item, these data are not relevant for the program but for the user:
 
     MoT-Voellmy input file version          2026-04-20
     Area of Interest                        Grasdalen
@@ -56,7 +58,7 @@ Enables or disables braking of the flow by the forest and breaking of the forest
 Choose one of the five options. With `none`, entrainment is switched off. `RAMMS` enables the simple entrainment model available in early versions of RAMMS::AVALANCHE. `TJEM` is the shorthand for *Tangential-Jump Entrainment Model*. `AvaFrame` implements the basal erosion model of the AvaFrame computational module com1DFA, while `GOEM` stands for *Grigorian–Ostroumov Erosion Model*. Each of the four models has its specific requirements for setting (empirical) parameters and for additional raster data for snow depth and snow properties, to be discussed below.
 
     Bed strength profile            {constant|global|local}
-In the case of the erosion models TJEM, GOEM and AvaFrame, where the entrainment rate depends on the snow-cover properties (shear strength, compressive strength and comminution energy, respectively), this property can be set to be constant or to vary linearly with depth in the snow cover. In the latter case, the gradient can either be specified globally by a single number, or locally through a raster file.
+In the case of the erosion models TJEM, GOEM and AvaFrame, where the entrainment rate depends on the snow-cover properties (shear strength, compressive strength and specific comminution energy, respectively), this property can be set to be constant or to vary linearly with depth in the snow cover. In the latter case, the gradient can either be specified globally by a single number, or locally through a raster file.
 
     Deposition                      {no}
 In the present version of MoT-Voellmy, no deposition model is implemented.
@@ -68,7 +70,7 @@ If entrainment is enabled, the change of the terrain slope and curvature due to 
 If enabled, the code writes not only the modulus of the velocity, $\sqrt{{\bar{\mathbf{u}}}^2}$ but also its components $\bar{u}$, $\bar{v}$ to separate files.
 
     Write maximum pressure          {yes|no}
-If enabled, the maximum impact pressure $p_{\mathrm{imp, max}} = \rho {\bar{\mathbf{u}}}^2$ in each cell attained over the entire simulation is written to file.
+If enabled, the maximum impact pressure $p_{\mathrm{imp, max}}(x,y) = \mathrm{max}_{t \in \{t_i\}} \rho {\bar{\mathbf{u}}}^2(x,y,t_i)$ in each cell attained over the entire simulation is written to file.
 
     Write instant. pressure         {yes|no}
 If enabled, the instantaneous impact pressure $p_{\mathrm{imp}}(x,y,t_i) = \rho \bar{\mathbf{u}}^2(x,y,t_i)$ in each cell is written to file at each intermediate output time $t_i$.
@@ -121,8 +123,8 @@ If the bed strength profile is declared constant, MoT-Voellmy sets this paramete
     Output filename root                    02
 All generated output files will be given this prefix so different runs can be distinguished. It may also be of the form `<subfolder>/<some prefix>` to place the files in a separate subfolder.
 
-    Output format                           ESRI_ASCII_Grid
-The output raster files can be written either in ESRI ASCII Grid format (bulky but human readable) or in <code>BinaryTerrain</code> (version 1.3) format (faster and more compact). Both formats are understood by QGIS and ArcGIS.
+    Output format                           {ESRI_ASCII_Grid|Binary_Terrain}
+The output raster files can be written either in ESRI ASCII Grid format (bulky but human readable) or in <code>Binary_Terrain</code> (version 1.3) format (faster and more compact). Both formats are understood by QGIS and ArcGIS.
 
     Simulation time                  (s)    180.0
 This value specifies after which simulated time the computation is stopped, even though some parts of the flow (typically in the tail) may still be moving.
@@ -148,7 +150,7 @@ A stopping criterion for the entire flow simulation rather than for individual c
 All the raster input data must be in ESRI ASCII Grid format and cover the same rectangular area at the same resolution. This means that some clipping and interpolation may be required when preparing the data for a simulation.
 
 - <em>Digital terrain model</em> (DTM) over a rectangular area with a spatial resolution of typically 5–10 m (for snow avalanches). If the resolution is poorer, important terrain features are not properly resolved. If the resolution is much finer, the flow moves over terrain that is much more hummocky than the snow cover in wintertime. The grid must be regular, i.e., consist of square cells when projected onto a horizontal plane.
-    <pre>Grid filename                           RA6157_dem.asc</pre>
+    <pre>Grid filename                           RA6157\_dem.asc</pre>
     
 - <em>Release area and fracture depth</em> are specified by the value 0 in non-release-area cells and the slab depth (in m, measured normal to the terrain) in the release area. There may be several disconnected release areas if one assumes they are released simultaneously. The fracture depth may vary inside a release area.
     <pre>Release depth filename                  RA6157_wf_h.asc</pre>
@@ -158,13 +160,13 @@ Depending on the desired simulation, additional raster files may need to be spec
 - <em>Friction parameters $\mu$ and $k$</em>: If the friction parameters are assumed to vary spatially (reflecting spatial variation of snow properties), they must be specified in two raster files. The dimensionless parameter $k$ relates to the traditional Voellmy parameter $\xi$ with units m/s² as $k = g/\xi$.
     <pre>Dry-friction coefficient         (-)    RA6157_mu.asc
 Turbulent drag coefficient       (-)    RA6157_k.asc</pre>
-In addition, set `Parameters variable`
+In addition, set `Parameters variable`.
   
 - <em>Start velocity</em>: To start a simulation with the flow mass already in motion, one can specify the velocity components $\bar{u}(t=0)$ and $\bar{v}(t=0)$ (in m/s) in two raster files. If starting from rest, use hyphens instead of file names.
     <pre>Start velocity u filename               -
 Start velocity v filename               -</pre>
 
-- If <em>entrainment of bed material</em> shall be simulated, two raster files specifying the local initial depth $b_0$ (in m) and shear strength $\tau_c$ (in Pa) of the erodible material must be supplied.
+- If <em>entrainment of bed material</em> shall be simulated, one raster file specifying the local initial thickness $b_0$ (in m) of the erodible material must be supplied for all implemented entrainment modules. `TJEM` and `GOEM` need another raster file specifying the shear or compressive strength of the bed material, $\tau_c$ (in Pa). The module `AvaFrame` interprets this file as containing the _specific_ erosion (or comminution) energy in J/kg (or, equivalently, m²/s²).
     <pre>Bed depth filename                      RA6157_b0.asc
 Bed shear strength filename             RA6157_tauc.asc</pre>
 
@@ -172,7 +174,7 @@ Bed shear strength filename             RA6157_tauc.asc</pre>
     <pre>Forest density filename                 RA6157_nD.asc
 Tree diameter filename                  RA6157_tD.asc</pre></br>
 
-Here is an example of a complete RCF:
+Here is an **example of a complete RCF**:
 <pre># Run information
 #
 MoT-Voellmy input file version          2026-04-20
